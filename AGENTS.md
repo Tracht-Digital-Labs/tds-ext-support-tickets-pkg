@@ -29,6 +29,7 @@ composer install && composer test   # phpunit; DB-backed tests need TDS_TEST_DB_
 - Call the API with `apiFetch`, never a relative `fetch`.
 - Every route change updates `php/docs/api.php`. New migrations stay in the `20260725*` band.
 - Stay in the `0.7.x` line (both products pin `^0.7.x`). Versions move via the release workflow only.
+- Follows the TDS quality standard (`../tds-ops/standards/quality.md`): no AI slop, clean code.
 
 ## Topic files
 

@@ -72,7 +72,7 @@ return [
         ],
         'responses' => [
             ['status' => 201, 'description' => '`{id}` des Tickets.'],
-            ['status' => 400, 'description' => 'Keine aktive Firma — ein Ticket braucht einen Absender.'],
+            ['status' => 400, 'description' => 'Keine aktive Firma, ein Ticket braucht einen Absender.'],
             ['status' => 401, 'description' => 'Keine Sitzung.'],
             ['status' => 403, 'description' => 'Kein `tickets:write`.'],
             ['status' => 422, 'description' => '`subject` oder `description` fehlt.'],
@@ -108,7 +108,7 @@ return [
             ['status' => 403, 'description' => 'Kein `tickets:write`.'],
             ['status' => 404, 'description' => 'Unbekannt oder nicht in der aktiven Firma.'],
             ['status' => 413, 'description' => 'Datei größer als 25 MB.'],
-            ['status' => 415, 'description' => 'Mime-Typ nicht erlaubt — der abgelehnte Typ steht in der Antwort.'],
+            ['status' => 415, 'description' => 'Mime-Typ nicht erlaubt, der abgelehnte Typ steht in der Antwort.'],
         ],
     ],
     [
@@ -130,7 +130,7 @@ return [
         'pattern' => '/tickets/{id:[0-9]+}/comments',
         'tag' => 'Portal',
         'summary' => 'Auf ein eigenes Ticket antworten',
-        'description' => 'Eine Kundenantwort ist immer öffentlich — `is_internal` gibt es '
+        'description' => 'Eine Kundenantwort ist immer öffentlich: `is_internal` gibt es '
             . 'nur auf der Verwaltungsseite.',
         'permission' => 'tickets:write',
         'params' => [
@@ -153,7 +153,7 @@ return [
         'description' => 'Server-zu-Server, **kein Browser-Login**: das Kontaktformular hat '
             . 'keine Sitzung, also gilt ein gemeinsames Geheimnis (`INGEST_TOKEN`), '
             . 'zeitkonstant verglichen. Solche Tickets haben `customer_id = NULL` und '
-            . 'tragen die Absenderdaten in den `from_*`-Feldern — daher muss '
+            . 'tragen die Absenderdaten in den `from_*`-Feldern, daher muss '
             . '`ticket.customer_id` nullable sein.',
         'auth' => 'token',
         'params' => [
@@ -167,7 +167,7 @@ return [
             ['status' => 201, 'description' => '`{id}` des angelegten Tickets.'],
             ['status' => 401, 'description' => 'Token fehlt oder stimmt nicht.'],
             ['status' => 422, 'description' => 'Name, E-Mail oder Nachricht genügen den Mindestanforderungen nicht.'],
-            ['status' => 503, 'description' => '`INGEST_TOKEN` nicht gesetzt — die Route ist damit abgeschaltet.'],
+            ['status' => 503, 'description' => '`INGEST_TOKEN` nicht gesetzt, die Route ist damit abgeschaltet.'],
         ],
     ],
     [
@@ -176,7 +176,7 @@ return [
         'tag' => 'Ingest',
         'summary' => 'IMAP-Postfach abrufen und E-Mails zu Tickets machen',
         'description' => 'Von außen angestoßen, weil der Produktionshost weder Cron noch '
-            . '`proc_open` erlaubt — es gibt also keinen Hintergrundprozess, der das '
+            . '`proc_open` erlaubt, es gibt also keinen Hintergrundprozess, der das '
             . 'selbst täte. Gelesen wird über Sockets (`webklex/php-imap`), nicht über '
             . '`ext-imap`. Antworten auf eine bestehende Ticket-Mail werden an das '
             . 'Ticket gehängt; alles andere legt ein neues Ticket an, sofern die '
@@ -188,9 +188,9 @@ return [
             ['in' => 'query', 'name' => 'token', 'type' => 'string', 'description' => 'Das Ingest-Token. Alternativ als Header `X-Ingest-Token`.'],
         ],
         'responses' => [
-            ['status' => 200, 'description' => 'Bericht über den Abruf: `processed`, `created`, `appended`, `skipped`, die geltende Regel (`mode`) und `polled` — letzteres unterscheidet „nichts Neues" von „gar nicht erst verbunden".'],
+            ['status' => 200, 'description' => 'Bericht über den Abruf: `processed`, `created`, `appended`, `skipped`, die geltende Regel (`mode`) und `polled`, letzteres unterscheidet „nichts Neues" von „gar nicht erst verbunden".'],
             ['status' => 401, 'description' => 'Token fehlt oder stimmt nicht.'],
-            ['status' => 503, 'description' => 'Kein Ingest-Token hinterlegt — die Route ist damit abgeschaltet.'],
+            ['status' => 503, 'description' => 'Kein Ingest-Token hinterlegt, die Route ist damit abgeschaltet.'],
         ],
     ],
     [
@@ -319,7 +319,7 @@ return [
         'tag' => 'Verwaltung',
         'summary' => 'IMAP-Verbindung prüfen',
         'description' => 'Diagnose vor dem ersten Abruf. Eine abgelehnte Anmeldung ist ein '
-            . 'Befund, kein Fehler der Anfrage — die Antwort trägt ihn als Ergebnis. '
+            . 'Befund, kein Fehler der Anfrage, die Antwort trägt ihn als Ergebnis. '
             . 'Geprüft wird die **gespeicherte** Konfiguration, nicht das noch nicht '
             . 'gespeicherte Formular.',
         'auth' => 'admin',
@@ -334,7 +334,7 @@ return [
         'pattern' => '/admin/tickets/imap',
         'tag' => 'Verwaltung',
         'summary' => 'Wirksame Postfach-Konfiguration',
-        'description' => 'Was der Abruf tatsächlich verwendet — inklusive `source` '
+        'description' => 'Was der Abruf tatsächlich verwendet, inklusive `source` '
             . '(`db` = Panel-Einstellungen, `env` = `IMAP_*` der `.env` des Hosts, '
             . '`none` = nicht eingerichtet) und der geltenden Annahme-Regel. Nötig, '
             . 'weil `GET /admin/settings/support-tickets` nur zeigt, was gespeichert '
@@ -368,13 +368,13 @@ return [
         'tag' => 'Einstellungen',
         'summary' => 'Benachrichtigungs-Schalter speichern',
         'description' => 'Antwortet mit dem **gespeicherten** Stand, nicht mit dem '
-            . 'gesendeten — die Oberfläche zeigt damit, was wirklich gilt.',
+            . 'gesendeten, die Oberfläche zeigt damit, was wirklich gilt.',
         'auth' => 'admin',
         'params' => [
             ['in' => 'body', 'name' => 'settings', 'type' => 'object', 'description' => 'Die zu setzenden Schalter; unbekannte Schlüssel werden verworfen.'],
         ],
         'responses' => [
-            ['status' => 200, 'description' => '`{settings: {...}}` — der gespeicherte Stand.'],
+            ['status' => 200, 'description' => '`{settings: {...}}`, der gespeicherte Stand.'],
             ['status' => 401, 'description' => 'Keine Sitzung.'],
             ['status' => 403, 'description' => 'Angemeldet, aber kein Admin.'],
         ],
@@ -384,7 +384,7 @@ return [
         'pattern' => '/admin/ticket-statuses',
         'tag' => 'Status-Register',
         'summary' => 'Konfigurierte Ticket-Status auflisten',
-        'description' => 'Die Status sind Daten, keine Aufzählung im Code — sie lassen sich '
+        'description' => 'Die Status sind Daten, keine Aufzählung im Code, sie lassen sich '
             . 'anlegen, umbenennen und einfärben.',
         'auth' => 'admin',
         'responses' => [

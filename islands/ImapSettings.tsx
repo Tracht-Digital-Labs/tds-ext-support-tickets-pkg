@@ -52,7 +52,7 @@ const MODES: Array<{ value: string; label: string; hint: string }> = [
   {
     value: "all",
     label: "Neue Tickets von allen Absendern",
-    hint: "Jede unbekannte Mail wird zu einem Ticket — auch Spam. Nur für ein Postfach sinnvoll, das ausschließlich Support-Mails empfängt.",
+    hint: "Jede unbekannte Mail wird zu einem Ticket, auch Spam. Nur für ein Postfach sinnvoll, das ausschließlich Support-Mails empfängt.",
   },
 ];
 
@@ -125,7 +125,7 @@ export default function ImapSettings() {
       setStatus(statusRes.ok ? ((await statusRes.json()) as ImapStatus) : null);
       setError(null);
     } catch {
-      setError("Einstellungen konnten nicht geladen werden — die API ist nicht erreichbar.");
+      setError("Einstellungen konnten nicht geladen werden, die API ist nicht erreichbar.");
     } finally {
       setLoaded(true);
     }
@@ -161,7 +161,7 @@ export default function ImapSettings() {
         toast.danger(`Speichern fehlgeschlagen (HTTP ${res.status}).`);
       }
     } catch {
-      toast.danger("Speichern fehlgeschlagen — die API ist nicht erreichbar.");
+      toast.danger("Speichern fehlgeschlagen, die API ist nicht erreichbar.");
     } finally {
       setBusy(false);
     }
@@ -185,7 +185,7 @@ export default function ImapSettings() {
         );
       }
     } catch {
-      setActionError("Verbindung fehlgeschlagen — die API ist nicht erreichbar.");
+      setActionError("Verbindung fehlgeschlagen, die API ist nicht erreichbar.");
     } finally {
       setTesting(false);
     }
@@ -216,11 +216,11 @@ export default function ImapSettings() {
         return;
       }
       toast.success(
-        `${data.processed} Mail(s) gelesen — ${data.created} neu, ${data.appended} angehängt, ${data.skipped} übersprungen.`,
+        `${data.processed} Mail(s) gelesen: ${data.created} neu, ${data.appended} angehängt, ${data.skipped} übersprungen.`,
       );
       window.dispatchEvent(new CustomEvent("tds:notification"));
     } catch {
-      setActionError("Abruf fehlgeschlagen — die API ist nicht erreichbar.");
+      setActionError("Abruf fehlgeschlagen, die API ist nicht erreichbar.");
     } finally {
       setPolling(false);
     }
@@ -259,7 +259,7 @@ export default function ImapSettings() {
       {status?.source === "env" ? (
         <p className="marginalia">
           Der Abruf läuft derzeit über <code>IMAP_*</code> aus der <code>.env</code> des Hosts.
-          Sobald hier ein Postfach eingetragen und gespeichert ist, gilt diese Einstellung — die{" "}
+          Sobald hier ein Postfach eingetragen und gespeichert ist, gilt diese Einstellung, die{" "}
           <code>.env</code> bleibt nur noch Rückfallebene.
         </p>
       ) : null}
@@ -434,7 +434,7 @@ export default function ImapSettings() {
         </button>
       </div>
       <p className="marginalia">
-        Beide Aktionen verwenden die <strong>gespeicherte</strong> Konfiguration — vorher speichern.
+        Beide Aktionen verwenden die <strong>gespeicherte</strong> Konfiguration, vorher speichern.
         Abgerufen werden ungelesene Mails (max. 50 je Durchgang); verarbeitete Mails werden als
         gelesen markiert.
       </p>

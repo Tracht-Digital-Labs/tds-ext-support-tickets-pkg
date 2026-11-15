@@ -72,7 +72,7 @@ export default function TicketBoard() {
     // click on a ticket did nothing and said nothing.
     const r = await apiFetch(`/tickets/${id}`).catch(() => null);
     if (r === null) {
-      toast.danger("Ticket konnte nicht geöffnet werden — die API ist nicht erreichbar.");
+      toast.danger("Ticket konnte nicht geöffnet werden, die API ist nicht erreichbar.");
       return;
     }
     setDetail(r.ok ? await r.json() : null);
@@ -169,7 +169,7 @@ function TicketDetailView({
         toast.danger(`Antwort konnte nicht gesendet werden (HTTP ${res.status}).`);
       }
     } catch {
-      toast.danger("Antwort konnte nicht gesendet werden — die API ist nicht erreichbar.");
+      toast.danger("Antwort konnte nicht gesendet werden, die API ist nicht erreichbar.");
     } finally {
       setSending(false);
     }
@@ -187,7 +187,7 @@ function TicketDetailView({
         toast.danger(`Upload fehlgeschlagen (HTTP ${res.status}).`);
       }
     } catch {
-      toast.danger("Upload fehlgeschlagen — die API ist nicht erreichbar.");
+      toast.danger("Upload fehlgeschlagen, die API ist nicht erreichbar.");
     }
   };
 
@@ -290,7 +290,7 @@ function NewTicketForm({ onCreated }: { onCreated: () => void }) {
         toast.danger(`Ticket konnte nicht erstellt werden (HTTP ${res.status}).`);
       }
     } catch {
-      toast.danger("Ticket konnte nicht erstellt werden — die API ist nicht erreichbar.");
+      toast.danger("Ticket konnte nicht erstellt werden, die API ist nicht erreichbar.");
     } finally {
       setSaving(false);
     }

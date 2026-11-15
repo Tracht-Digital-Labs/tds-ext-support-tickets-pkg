@@ -37,7 +37,7 @@ final class Notifier
         $this->send(
             $this->adminEmail,
             "Neues Support-Ticket #{$id}: {$subject}",
-            "<p>Ein neues Support-Ticket wurde erstellt.</p><p><strong>#{$id}</strong> — "
+            "<p>Ein neues Support-Ticket wurde erstellt.</p><p><strong>#{$id}</strong>, "
                 . htmlspecialchars($subject) . '</p>',
         );
     }

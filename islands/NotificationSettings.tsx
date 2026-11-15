@@ -46,7 +46,7 @@ export default function NotificationSettings() {
       }
     } catch {
       setToggles(previous);
-      toast.danger("Speichern fehlgeschlagen — die API ist nicht erreichbar.");
+      toast.danger("Speichern fehlgeschlagen, die API ist nicht erreichbar.");
     } finally {
       setSaving(false);
     }
