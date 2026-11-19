@@ -1,4 +1,4 @@
-import { defineExtension } from "@tracht-digital-solutions/tds-frontend-contract";
+import { defineExtension } from "@tracht-digital-labs/tds-frontend-contract";
 
 /**
  * Support-tickets extension — the customer↔owner support system, ported from
@@ -32,7 +32,7 @@ export default defineExtension({
     {
       id: "tickets-open",
       title: "Offene Tickets",
-      island: "@tracht-digital-solutions/tds-ext-support-tickets/widgets/Widget.astro",
+      island: "@tracht-digital-labs/tds-ext-support-tickets/widgets/Widget.astro",
       size: "sm",
       permission: "tickets:read",
       dataEndpoint: "/tickets/summary",
@@ -43,14 +43,14 @@ export default defineExtension({
     {
       id: "support-tickets",
       label: "Support-Tickets",
-      island: "@tracht-digital-solutions/tds-ext-support-tickets/islands/Settings.astro",
+      island: "@tracht-digital-labs/tds-ext-support-tickets/islands/Settings.astro",
       order: 30,
     },
   ],
   routes: [
     {
       pattern: "/tickets",
-      entrypoint: "@tracht-digital-solutions/tds-ext-support-tickets/pages/Index.astro",
+      entrypoint: "@tracht-digital-labs/tds-ext-support-tickets/pages/Index.astro",
       permission: "tickets:read",
     },
   ],

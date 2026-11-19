@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { Spinner, toast } from "@tracht-digital-solutions/tds-shared/components";
+import { Spinner, toast } from "@tracht-digital-labs/tds-shared/components";
 import {
   AnimatedItem,
   AnimatedList,
   Collapse,
   Presence,
-} from "@tracht-digital-solutions/tds-shared/motion/react";
+} from "@tracht-digital-labs/tds-shared/motion/react";
 // `status_color` comes out of the `support_tickets_status` table — i.e. it is
 // whatever an admin typed. Interpolating it straight into a class name was
 // broken twice over: Tailwind cannot statically extract an interpolated class
@@ -13,9 +13,9 @@ import {
 // rule at all, so the pill rendered with no colour. resolveChipVariant maps the
 // known aliases (violet -> cat-violet, red -> danger, …) and falls back to
 // `neutral`, so the class it returns always exists in primitives.css.
-import { resolveChipVariant } from "@tracht-digital-solutions/tds-shared/design";
-import { apiFetch, sendJson } from "@tracht-digital-solutions/tds-shared/api";
-import { FileDropZone } from "@tracht-digital-solutions/tds-shared/dropzone";
+import { resolveChipVariant } from "@tracht-digital-labs/tds-shared/design";
+import { apiFetch, sendJson } from "@tracht-digital-labs/tds-shared/api";
+import { FileDropZone } from "@tracht-digital-labs/tds-shared/dropzone";
 
 interface TicketRow {
   id: number;

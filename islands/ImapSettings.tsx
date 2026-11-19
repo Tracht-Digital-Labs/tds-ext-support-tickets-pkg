@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { FormAlert, Spinner, toast } from "@tracht-digital-solutions/tds-shared/components";
-import { apiFetch, sendJson } from "@tracht-digital-solutions/tds-shared/api";
-import type { MaskedSetting as Masked } from "@tracht-digital-solutions/tds-shared/admin";
+import { FormAlert, Spinner, toast } from "@tracht-digital-labs/tds-shared/components";
+import { apiFetch, sendJson } from "@tracht-digital-labs/tds-shared/api";
+import type { MaskedSetting as Masked } from "@tracht-digital-labs/tds-shared/admin";
 
 
 interface ImapStatus {

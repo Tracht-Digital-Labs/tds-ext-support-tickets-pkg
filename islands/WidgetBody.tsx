@@ -1,4 +1,4 @@
-import { SummaryMetric } from "@tracht-digital-solutions/tds-shared/components";
+import { SummaryMetric } from "@tracht-digital-labs/tds-shared/components";
 
 /** "Offene Tickets" widget body — the open-ticket count from `/tickets/summary`. */
 export default function OpenTicketsCount() {
